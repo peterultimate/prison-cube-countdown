@@ -102,6 +102,30 @@ npx --yes serve .
 
 ---
 
+## ☁️ Deploy
+
+Drop the whole folder on any static host — **no build step, no runtime, zero server code**.
+
+### Vercel (one click)
+
+```bash
+npm i -g vercel
+vercel
+```
+
+That's it. Vercel auto-detects this as a static project. A [vercel.json](file:///Users/peterultimate/Documents/Web%20Projects/CubeCount/vercel.json) is included for:
+- `/assets/*` → 1-year immutable CDN cache (fonts, GIFs, audio)
+- `.css` / `.js` → 1-day stale-while-revalidate cache
+- Clean URLs (no `.html` extensions)
+- Security headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `X-Frame-Options: SAMEORIGIN`, `Permissions-Policy`
+
+### GitHub Pages
+
+**Settings → Pages → Source: `Deploy from a branch` → Branch: `main` / `/ (root)`**, Save.
+Your site goes live at `https://peterultimate.github.io/prison-cube-countdown/` within ~60s.
+
+---
+
 ## 🎛️ HTML Attribute API
 
 Declarative configuration , **no JS to write** for 90% of use cases:
