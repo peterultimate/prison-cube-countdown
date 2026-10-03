@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Jujutsu Kaisen';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/Jujutsu%20Kaisen.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/exo-regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/exo-semibold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/exo-bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/share-tech-mono.ttf) format('truetype');
+}

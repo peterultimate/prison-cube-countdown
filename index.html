@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prison Cube — a Jujutsu Kaisen Prison Realm-inspired sliding cube countdown. Zero dependencies, drop-in HTML attributes, blade-clash collision sparks, and clang-gesture mobile UX.">
+  <title>Prison Cube · Countdown</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Noto+Sans+JP:wght@500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="timer.js" defer></script>
+</head>
+<body>
+  <main class="scroll-stage">
+    <div class="sticky-stage">
+      <div class="scene">
+        <section class="timer" aria-label="Livestream countdown">
+          <div class="scroll-cue" aria-hidden="true"><span></span></div>
+          <header class="timer-heading">
+            <h1>Livestream will start in</h1>
+            <button class="day-switch" type="button" role="switch" aria-checked="false" aria-label="Show days"><span></span></button>
+            <div class="switch-label" aria-hidden="true"><span>Day off</span><span>Day on</span></div>
+          </header>
+          <div class="tiles" count-down-date="2023-10-15T00:00:00Z" double-digit-format="1">
+            <div class="tile seconds" data-unit="seconds"><div class="digits"><div class="number" number-slot="seconds">00</div></div><div class="unit">Seconds</div><i class="edge bottom"></i><i class="edge top"></i><i class="edge right"></i><i class="edge left mobile-hidden"></i></div>
+            <div class="tile minutes" data-unit="minutes"><div class="digits"><div class="number" number-slot="minutes">00</div><span class="colon">:</span></div><div class="unit">Minutes</div><i class="edge bottom mobile-hidden"></i><i class="edge top"></i><i class="edge left"></i><i class="edge right mobile-hidden"></i></div>
+            <div class="tile hours" data-unit="hours"><div class="digits"><div class="number" number-slot="hours">00</div><span class="colon">:</span></div><div class="unit">Hours</div><i class="edge top"></i><i class="edge bottom"></i><i class="edge left"></i><i class="edge right mobile-hidden"></i></div>
+            <div class="tile days" data-unit="days" aria-hidden="true"><div class="digits"><div class="number" number-slot="days">00</div><span class="colon">:</span></div><div class="unit">Day</div><i class="edge top"></i><i class="edge bottom"></i><i class="edge left mobile-hidden"></i><i class="edge right"></i></div>
+            <div class="sparks-layer" aria-hidden="true"></div>
+          </div>
+        </section>
+        <button class="help-trigger" type="button" aria-haspopup="dialog"><span>Configure</span><img src="assets/character.gif" alt="" width="400" height="320" loading="lazy" decoding="async"></button>
+        <button class="sound-pill" id="sound-pill" type="button" aria-pressed="false" aria-label="Toggle sound">
+          <svg class="icon sound-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          <svg class="icon sound-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          <span class="sound-label">SOUND</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  <audio id="bg-audio" src="assets/bg_song.mp3" preload="metadata" loop></audio>
+  <div class="intro-curtain" aria-hidden="true"></div>
+  <div class="modal-backdrop" hidden>
+    <section class="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title" tabindex="-1">
+      <h2 id="help-title">Configure Countdown</h2>
+      <form class="config-form" id="config-form">
+        <div class="config-row">
+          <label for="cfg-heading">Heading</label>
+          <input type="text" id="cfg-heading" maxlength="80">
+        </div>
+        <div class="config-row">
+          <label for="cfg-date">Target date</label>
+          <input type="date" id="cfg-date">
+        </div>
+        <div class="config-row">
+          <label for="cfg-time">Target time (UTC)</label>
+          <input type="time" id="cfg-time" step="1">
+        </div>
+        <div class="config-row config-row-toggle">
+          <label for="cfg-sound">Background sound</label>
+          <button class="cfg-switch" type="button" role="switch" id="cfg-sound" aria-checked="false" aria-controls="bg-audio"><span></span></button>
+        </div>
+        <div class="config-row" id="cfg-volume-row">
+          <label for="cfg-volume">Volume</label>
+          <input type="range" id="cfg-volume" min="0" max="1" step="0.01" value="0.6">
+        </div>
+        <div class="config-row config-row-toggle">
+          <label>Double digit format</label>
+          <button class="cfg-switch" type="button" role="switch" id="cfg-double" aria-checked="true"><span></span></button>
+        </div>
+        <div class="config-row config-row-toggle">
+          <label>Show days</label>
+          <button class="cfg-switch" type="button" role="switch" id="cfg-days" aria-checked="false"><span></span></button>
+        </div>
+        <fieldset class="presets">
+          <legend>Fonts</legend>
+          <div class="config-row font-row">
+            <label for="cfg-font-display">Display face</label>
+            <div class="font-input-wrap">
+              <select id="cfg-font-display" class="font-select">
+                <optgroup label="Presets">
+                  <option value="Jujutsu Kaisen">Jujutsu Kaisen (default)</option>
+                  <option value="Anton">Anton</option>
+                  <option value="Archivo Black">Archivo Black</option>
+                  <option value="Bebas Neue">Bebas Neue</option>
+                  <option value="Oswald">Oswald</option>
+                  <option value="Bungee">Bungee</option>
+                  <option value="Russo One">Russo One</option>
+                  <option value="Racing Sans One">Racing Sans One</option>
+                  <option value="Impact (system)">Impact (system)</option>
+                </optgroup>
+                <optgroup label="Custom Google Font">
+                  <option value="__custom__">Enter a Google Font name…</option>
+                </optgroup>
+              </select>
+              <input type="text" id="cfg-font-display-custom" class="font-custom" placeholder="e.g. Space Grotesk" hidden>
+            </div>
+          </div>
+          <div class="config-row font-row">
+            <label for="cfg-font-sans">UI / body</label>
+            <div class="font-input-wrap">
+              <select id="cfg-font-sans" class="font-select">
+                <optgroup label="Presets">
+                  <option value="Noto Sans JP">Noto Sans JP (default)</option>
+                  <option value="Exo">Exo</option>
+                  <option value="Inter">Inter</option>
+                  <option value="Roboto">Roboto</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Archivo">Archivo</option>
+                  <option value="IBM Plex Sans">IBM Plex Sans</option>
+                  <option value="system-ui (system)">system-ui (system)</option>
+                </optgroup>
+                <optgroup label="Custom Google Font">
+                  <option value="__custom__">Enter a Google Font name…</option>
+                </optgroup>
+              </select>
+              <input type="text" id="cfg-font-sans-custom" class="font-custom" placeholder="e.g. Poppins" hidden>
+            </div>
+          </div>
+          <div class="config-row font-row">
+            <label for="cfg-font-mono">Numbers / mono</label>
+            <div class="font-input-wrap">
+              <select id="cfg-font-mono" class="font-select">
+                <optgroup label="Presets">
+                  <option value="JetBrains Mono">JetBrains Mono (default)</option>
+                  <option value="Share Tech Mono">Share Tech Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Space Mono">Space Mono</option>
+                  <option value="IBM Plex Mono">IBM Plex Mono</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                  <option value="Source Code Pro">Source Code Pro</option>
+                  <option value="Courier Prime">Courier Prime</option>
+                  <option value="Consolas (system)">Consolas (system)</option>
+                </optgroup>
+                <optgroup label="Custom Google Font">
+                  <option value="__custom__">Enter a Google Font name…</option>
+                </optgroup>
+              </select>
+              <input type="text" id="cfg-font-mono-custom" class="font-custom" placeholder="e.g. JetBrains Mono" hidden>
+            </div>
+          </div>
+          <p class="font-hint">Type any font from <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">fonts.google.com</a> — it loads automatically.</p>
+        </fieldset>
+        <fieldset class="presets">
+          <legend>Quick presets</legend>
+          <button type="button" data-offset="900">15 min</button>
+          <button type="button" data-offset="3600">1 hour</button>
+          <button type="button" data-offset="86400">1 day</button>
+          <button type="button" data-offset="604800">1 week</button>
+        </fieldset>
+        <div class="config-actions">
+          <p class="credit">Made by <a href="https://instagram.com/peterultimate" target="_blank" rel="noopener noreferrer">@peterultimate</a></p>
+          <div class="config-actions-buttons">
+            <button type="button" class="close-help">Close</button>
+            <button type="button" class="save-config" id="save-config">Save</button>
+          </div>
+        </div>
+        <div class="save-status" id="save-status" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

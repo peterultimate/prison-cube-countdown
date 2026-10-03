@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prison Cube — a Jujutsu Kaisen Prison Realm-inspired sliding cube countdown. Zero dependencies, drop-in HTML attributes, blade-clash collision sparks, and clang-gesture mobile UX.">
+  <title>Prison Cube · Countdown</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Noto+Sans+JP:wght@500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="timer.js" defer></script>
+</head>
+<body>
+  <main class="scroll-stage">
+    <div class="sticky-stage">
+      <div class="scene">
+        <section class="timer" aria-label="Livestream countdown">
+          <div class="scroll-cue" aria-hidden="true"><span></span></div>
+          <header class="timer-heading">
+            <h1>Livestream will start in</h1>
+            <button class="day-switch" type="button" role="switch" aria-checked="false" aria-label="Show days"><span></span></button>
+            <div class="switch-label" aria-hidden="true"><span>Day off</span><span>Day on</span></div>
+          </header>
+          <div class="tiles" count-down-date="2026-10-04T18:08:30.503031+00:00" double-digit-format="1">
+            <div class="tile seconds" data-unit="seconds"><div class="digits"><div class="number" number-slot="seconds">00</div></div><div class="unit">Seconds</div><i class="edge bottom"></i><i class="edge top"></i><i class="edge right"></i><i class="edge left mobile-hidden"></i></div>
+            <div class="tile minutes" data-unit="minutes"><div class="digits"><div class="number" number-slot="minutes">00</div><span class="colon">:</span></div><div class="unit">Minutes</div><i class="edge bottom mobile-hidden"></i><i class="edge top"></i><i class="edge left"></i><i class="edge right mobile-hidden"></i></div>
+            <div class="tile hours" data-unit="hours"><div class="digits"><div class="number" number-slot="hours">00</div><span class="colon">:</span></div><div class="unit">Hours</div><i class="edge top"></i><i class="edge bottom"></i><i class="edge left"></i><i class="edge right mobile-hidden"></i></div>
+            <div class="tile days" data-unit="days" aria-hidden="true"><div class="digits"><div class="number" number-slot="days">00</div><span class="colon">:</span></div><div class="unit">Day</div><i class="edge top"></i><i class="edge bottom"></i><i class="edge left mobile-hidden"></i><i class="edge right"></i></div>
+          </div>
+        </section>
+        <button class="help-trigger" type="button" aria-haspopup="dialog"><span>How does it work?</span><img src="assets/character.gif" alt="" width="400" height="320"></button>
+      </div>
+    </div>
+  </main>
+  <div class="intro-curtain" aria-hidden="true"></div>
+  <div class="modal-backdrop" hidden>
+    <section class="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title" tabindex="-1">
+      <h2 id="help-title">How it works</h2>
+      <ol>
+        <li><p>Copy and paste the CSS and JavaScript code inside page settings. You don't need to bother about the code, everything will work with attributes only. 🙂</p></li>
+        <li><p>On the element that will act as the outer timer wrapper, add the <strong class="accent">count-down-date</strong> attribute with a <strong>value</strong> equal to a <a href="https://www.w3schools.com/js/js_date_formats.asp" target="_blank" rel="noopener">valid date format</a></p></li>
+        <li><p>On the element that will act as the outer timer wrapper, add the <strong class="accent">double-digit-format</strong> attribute with a <strong>value</strong> equal to <strong class="accent">0</strong> (simple format) or <strong class="accent">1</strong> (double digit format)</p></li>
+        <li><p>On each element that will act as a timer element (days, hours, minutes, and seconds) add the attribute <strong class="accent">number-slot</strong> with a value of <strong class="accent">days</strong>, <strong class="accent">hours</strong>, <strong class="accent">minutes</strong>, or <strong class="accent">seconds</strong>, respectively. <strong>Day wrapper element is optional</strong>.</p></li>
+      </ol>
+      <button class="close-help" type="button">Close</button>
+    </section>
+  </div>
+</body>
+</html>
