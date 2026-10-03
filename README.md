@@ -1,8 +1,7 @@
-# 🟥 prison-cube-countdown
 
 > *The seal opens when the timer hits zero.*
 >
-> A **Jujutsu Kaisen Prison Realm-inspired** sliding cube countdown — zero dependencies, drop-in via HTML attributes, blade-clash friction sparks, animated digit reels, and a full responsive clang-gesture UX for phones.
+> A **Jujutsu Kaisen Prison Realm-inspired** sliding cube countdown , zero dependencies, drop-in via HTML attributes, blade-clash friction sparks, animated digit reels, and a full responsive clang-gesture UX for phones.
 
 <p align="center">
   <img
@@ -14,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="#-quick-start">Quick start</a> · <a href="#-html-attribute-api">API</a> · <a href="#-configure-panel">Configure</a> · <a href="#-interaction-map">Interaction map</a> · <a href="#-easter-eggs">Easter eggs</a>
+  <a href="#-quick-start">Quick start</a> · <a href="#-html-attribute-api">API</a> · <a href="#-configure-panel">Configure</a> · <a href="#-interaction-map">Interaction map</a>
 </p>
 
 <br>
@@ -43,10 +42,6 @@
   - Keyboard-focus-trapped modal with Escape close + focus restoration back to Configure button
   - ARIA `role="switch"`, `role="dialog"` `aria-modal`, `aria-checked`, `aria-pressed` throughout
   - Tab-index focus rings everywhere in red-visible 2px outline
-- **🏷️ Jujutsu Kaisen easter eggs** , no spoilers, just vibes
-  - Konami code (↑↑↓↓←→←→BA) → *獄門疆 Gokumonkyō / "Open, Kyōgoku!"* full activation slam
-  - Hover heading → **獄門疆 (Gokumonkyō)** tag swap
-  - Double-click heading → Sukuna **伏魔御厨子 Fukuma Mizushi** incantation banner + radial spark burst
 
 ---
 
@@ -156,9 +151,6 @@ Storage key: `cubecount:config:v1`. Versioned so future format migrations won't 
 | **Day-switch pill** | Top-right in header, toggles Day card vis. | Same, stacked below heading. |
 | **Configure button** | Bottom-right corner on character. Opens modal. | Same, shrunk to 12–14em floating GIF overlay. |
 | **Sound mute pill** | Bottom-left corner, tiny, 55% base opacity. | Same, 2.4–2.6em for thumb-ability. |
-| **Konami ↑↑↓↓←→←→BA** | Full activation slam. | Works (use an OTG / BT keyboard). |
-| **Hover H1** | **獄門疆 (Gokumonkyō)** tag. | No-op (no hover). |
-| **Double-click H1** | Sukuna 伏魔御厨子 banner. | Double-tap H1. |
 
 ---
 
@@ -215,7 +207,7 @@ For open-source distribution, **keep a copy of the SIL OFL text in `assets/OFL.t
 ```txt
 MIT License
 
-Copyright (c) 2026 Peter Ultimate (https://instagram.com/peterultimate)
+Copyright (c) 2026 Homesh Peter Paul
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -235,15 +227,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-### Recommended repo metadata
-
-```
-About: 🟥 Jujutsu Kaisen Prison Realm inspired sliding cube countdown , zero deps, drop-in HTML attribute API, blade-clash collision sparks, animated digit reels, clang-gesture mobile UX.
-Topics: countdown countdown-timer jujutsu-kaisen css-animations javascript vanilla-javascript no-dependencies widget ui-component responsive timer ui open-source jjk prison-realm gokumonkyo sparks-animation drop-in
-Homepage: (your GitHub Pages URL)
-```
-
 ---
 
 ## ✍️ Author
@@ -252,4 +235,4 @@ Made by [**@peterultimate**](https://instagram.com/peterultimate).
 
 <br>
 
-> *"獄門疆 , 開け。 京極。"*
+> *"With regard to cursed technique… I'm overwhelmingly stronger."* — Ryomen Sukuna
